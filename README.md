@@ -13,4 +13,4 @@ Features of this Site :-
 ### Installation Guide.
 
 Once you forked this repo, run `npm install` command inside the folder to install all the package.
-This would run on (localhost:3000)
+This would run on [localhost:3000]
