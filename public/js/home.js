@@ -17,7 +17,7 @@ const renderFilms = (films) => {
 
                 <div class="info-container">
                     <div class="event-name">
-                    <a href="/post/${filmId}" > ${filmData.title} </a>
+                    <a class="film-title" href="/post/${filmId}" > ${filmData.title} </a>
                     </div>
                     <div class="event-location">
                     ${filmData.director}

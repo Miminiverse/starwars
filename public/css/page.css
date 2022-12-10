@@ -6,15 +6,29 @@ h1 {
     font-weight: 400;
     text-align: center;
     font-family: sans-serif;
-    color: #555;
+    color: #2c3e52;
     margin-bottom: 50px;
 }
 
 body {
-    height: 700px;
+    margin-top: 70px;
     background-color: #e4e4e4;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+.col-sm-2 {
+    color: #2c3e52;
+}
+
+.col-sm-9 {
+
+    padding-bottom: 5px;
+}
+
+.planet-title {
+    color: #3486e4;
 }

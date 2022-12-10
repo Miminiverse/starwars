@@ -13,8 +13,8 @@ const renderPlanet = (items) => {
                 let planetName = planetdata.result.properties.name
                 outputPlanet +=
                     `<dl>
-                    <a style="font-size:17px" 
-                    href='/planet/${planetId}' target='_blank'>${planetName}</a >
+                    <a class="planet-title" 
+                    href='/planet/${planetId}'>${planetName}</a >
                     </dl >
                     `;
                 planet.innerHTML = outputPlanet
