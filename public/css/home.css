@@ -2,6 +2,7 @@
     font-family: sans-serif;
 }
 
+
 h1 {
     font-weight: 400;
     text-align: center;
@@ -21,7 +22,19 @@ body {
 }
 
 
-.photo-container {
+.card-container {
+    margin: 10px;
+    display: grid;
+    grid-template-areas:
+        'photo info';
+    grid-template-columns: 150px 1fr;
+    width: 550px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    line-height: 1.75em;
+}
+
+.film-container {
     font-size: 1.5em;
     background-color: #2c3e52;
     color: white;
@@ -33,41 +46,31 @@ body {
     align-items: center;
 }
 
-.card-container {
-    margin: 10px;
-    display: grid;
-    grid-template-areas:
-        'photo info';
-    grid-template-columns: 150px 1fr;
-    width: 500px;
-    background-color: #ffffff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    line-height: 1.75em;
-}
-
 .info-container {
     padding: 20px;
     grid-area: info;
+    text-align: center;
+
 }
 
-.event-name {
+.film-name {
 
     font-weight: bold;
     padding-bottom: 5px;
+
 }
 
-.event-location {
+.film-director {
     font-weight: 300;
 }
 
-.day {
-    font-weight: 300;
-}
 
-.month {
+.film-id {
     font-weight: 600;
 }
 
 .film-title {
     color: #2c3e52;
+
+
 }

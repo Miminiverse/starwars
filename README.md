@@ -9,9 +9,11 @@ Features of this Site :
 2. Home Page showing all the Star Wars films 
 3. A view showing all the details of each film
 4. A view showing all the details of each planet 
+5. A view showing all the details of each character
+6. A Home Button to go back to Home Page
 
-
-### Installation Guide.
+### Installation Guide
 
 Once you forked this repo, run `npm install` command inside the folder to install all the package.
-This would run on `localhost:3000`
+Run `npm start`. 
+This site would run on `localhost:3000`.

@@ -1,18 +1,25 @@
 const planetlist = document.querySelector('.planet-list')
 let output = ''
 
+const handleErrors = res => {
+  if (!res.ok) {
+    throw Error(res.statusText);
+  }
+  return res;
+}
 
 function getPlanetDetail() {
-    const baseUrls = 'https://www.swapi.tech/api/planets'
-    let Id = location.pathname.split('/').pop()
+  const baseUrls = 'https://www.swapi.tech/api/planets'
+  let Id = location.pathname.split('/').pop()
 
 
-    fetch(`${baseUrls}/${Id}`)
-        .then(res => res.json())
-        .then(data => {
-            let planetDetail = data.result.properties
+  fetch(`${baseUrls}/${Id}`)
+    .then(handleErrors)
+    .then(res => res.json())
+    .then(data => {
+      let planetDetail = data.result.properties
 
-            output = `
+      output = `
 
             <h1>${planetDetail.name}</h1>
 
@@ -40,7 +47,7 @@ function getPlanetDetail() {
 
                 <dt class="col-sm-2">Rotation Period</dt>
                 <dd class="col-sm-9">
-                  <p>${planetDetail.drotation_period}</p>
+                  <p>${planetDetail.rotation_period}</p>
                 </dd>
 
                 <dt class="col-sm-2">Orbital Period</dt>
@@ -61,13 +68,13 @@ function getPlanetDetail() {
               </dl>
 
                 `;
-            planetlist.innerHTML = output
+      planetlist.innerHTML = output
 
-        })
-        .catch(e => {
-            console.log('Error')
-            console.log(e)
-        })
+    })
+    .catch(e => {
+      console.log('Error')
+      console.log(e)
+    })
 }
 
 getPlanetDetail()

@@ -3,23 +3,31 @@ const baseUrls = 'https://www.swapi.tech/api/films/'
 const filmList = document.querySelector('.film-list')
 let output = ''
 
+
+const handleErrors = res => {
+    if (!res.ok) {
+        throw Error(res.statusText);
+    }
+    return res;
+}
+
 const renderFilms = (films) => {
     films.forEach(film => {
         let filmId = film.uid
         let filmData = film.properties
         output += `
         <div class="card-container">
-            <div class="photo-container">
-                <div class="date">
-                    <div class="month">${filmId}</div>
+            <div class="film-container">
+                <div>
+                    <div class="film-id">${filmId}</div>
                 </div>
             </div>
 
                 <div class="info-container">
-                    <div class="event-name">
-                    <a class="film-title" href="/post/${filmId}" > ${filmData.title} </a>
+                    <div class="film-name">
+                    <a class="film-title" style="text-decoration:none" href="/film/${filmId}" > ${filmData.title} </a>
                     </div>
-                    <div class="event-location">
+                    <div class="film-director">
                     ${filmData.director}
                     </div>
                 </div>
@@ -32,21 +40,11 @@ const renderFilms = (films) => {
     })
 }
 
-// function errorHandler(err, clear = false) {
-//     if (clear) {
-//         document.querySelector("#errors").innerHTML = '';
-//         return;
-//     }
-//     document.querySelector("#errors").innerHTML = `<p style="color:red;">${err}</p>`
-// }
 
 function getFilms() {
     fetch(baseUrls)
-        .then((res) => {
-            if (res.ok) {
-                return res.json()
-            }
-        })
+        .then(handleErrors)
+        .then((res) => res.json())
         .then(data => {
             renderFilms(data.result)
         })

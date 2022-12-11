@@ -3,21 +3,49 @@ let output = ''
 let outputPlanet = ''
 let outputCharacter = ''
 
+const handleErrors = res => {
+    if (!res.ok) {
+        throw Error(res.statusText);
+    }
+    return res;
+}
 
 const renderPlanet = (items) => {
     items.map(item => {
         fetch(item)
-            .then(res => res.json())
+            .then(handleErrors)
+            .then((res) => res.json())
             .then(planetdata => {
                 let planetId = planetdata.result.uid
                 let planetName = planetdata.result.properties.name
                 outputPlanet +=
                     `<dl>
-                    <a class="planet-title" 
+                    <a class="planet-title" style="text-decoration:none"
                     href='/planet/${planetId}'>${planetName}</a >
                     </dl >
                     `;
                 planet.innerHTML = outputPlanet
+
+            })
+    })
+}
+
+const renderCharacter = (itemsCharacter) => {
+    itemsCharacter.map(itemCharacter => {
+        fetch(itemCharacter)
+            .then(handleErrors)
+            .then((res) => res.json())
+            .then(characterData => {
+                let characterId = characterData.result.uid
+                let characterName = characterData.result.properties.name
+                outputCharacter +=
+                    `<dl>
+            <a class="character-title" style="text-decoration:none"
+            href='/character/${characterId}'>${characterName}</a >
+            </dl >
+            `;
+                character.innerHTML = outputCharacter
+
             })
     })
 }
@@ -27,11 +55,12 @@ function getFilmDetail() {
     let Id = location.pathname.split('/').pop()
 
     fetch(`${baseUrls}/${Id}`)
-        .then(res => res.json())
+        .then(handleErrors)
+        .then((res) => res.json())
         .then(data => {
             let filmDetailData = data.result.properties
             let planetUrls = filmDetailData.planets
-
+            let characterUrls = filmDetailData.characters
             output = `
 
             <h1>${filmDetailData.title}</h1>
@@ -61,6 +90,10 @@ function getFilmDetail() {
             <dd id='planet'class="col-sm-9">
             </dd>
 
+            <dt class="col-sm-2">Characters</dt>
+            <dd id='character'class="col-sm-9">
+            </dd>
+
           </dl>
 
             `;
@@ -68,8 +101,12 @@ function getFilmDetail() {
 
             let planet = document.getElementById('planet')
             planet.innerHTML = "<p>Loading...";
-
             renderPlanet(planetUrls)
+
+            let character = document.getElementById('character')
+            character.innerHTML = "<p>Loading...";
+            renderCharacter(characterUrls)
+
         })
         .catch(e => {
             console.log('Error')
